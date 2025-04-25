@@ -1,28 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Team } from './team.model';
 
-const STORAGE_KEY = 'cricket_point_table';
+
 
 @Injectable({ providedIn: 'root' })
 export class PointTableService {
   teams: Team[] = [];
-
-  constructor() {
-    this.loadFromLocalStorage();
-  }
-
-  private loadFromLocalStorage() {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (data) {
-      this.teams = JSON.parse(data);
-    } else {
-      this.initializeTeams();
-    }
-  }
-
-  private saveToLocalStorage() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.teams));
-  }
 
   private initializeTeams(): void {
     const teamNames = ['HHM', 'RD11', 'CC', 'SH11', 'KSBB', 'GB', 'AV11', 'MW'];
@@ -50,7 +33,7 @@ export class PointTableService {
   
     this.teams = generatedTeams;
     console.log(generatedTeams)
-    this.saveToLocalStorage(); // Optional
+ 
   }
   
   getTeams(): Team[] {
@@ -106,7 +89,6 @@ export class PointTableService {
 
     this.calculateNRR(team1);
     this.calculateNRR(team2);
-    this.saveToLocalStorage();
   }
 
   private calculateNRR(team: Team) {
@@ -118,7 +100,6 @@ export class PointTableService {
   }
 
   resetTable() {
-    localStorage.removeItem(STORAGE_KEY);
     this.initializeTeams();
   }
 
