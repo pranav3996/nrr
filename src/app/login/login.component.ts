@@ -4,10 +4,11 @@ import { app } from '../services/firebase-config';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { PointTableComponent } from '../net-run-rate/point-table/point-table.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,PointTableComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
